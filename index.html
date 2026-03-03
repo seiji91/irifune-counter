@@ -14,79 +14,58 @@
       color: white;
       display: flex;
       justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
     .container {
+      width: 320px;
       background-color: black;
       border: 4px solid yellow;
       border-radius: 12px;
       padding: 16px;
-      margin: 20px;
       box-sizing: border-box;
-      max-width: 400px;
-      width: 100%;
+      text-align: center;
     }
 
     .header-row {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
       align-items: center;
       gap: 10px;
       margin-bottom: 12px;
+      flex-wrap: wrap;
     }
 
     .title-image {
-      height: 50px;
+      height: 40px;
     }
 
     .subheading {
-      font-size: 1.2em;
+      font-size: 1.1em;
     }
 
     #countdown {
-      display: flex;
-      justify-content: center;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      white-space: nowrap;
-      font-size: 2em;
+      font-size: 1.8em;
       margin-bottom: 10px;
+      white-space: nowrap;
+      overflow: hidden;
     }
 
     .number {
       font-weight: bold;
-      padding: 0 4px;
+      padding: 0 3px;
       color: yellow;
     }
 
     .label {
-      margin-right: 6px;
+      margin-right: 4px;
     }
 
     footer {
-      font-size: 0.75em;
+      font-size: 0.7em;
       color: #ccc;
-      margin-top: 8px;
-    }
-
-    @media (max-width: 480px) {
-      .title-image {
-        height: 40px;
-      }
-
-      .subheading {
-        font-size: 1em;
-      }
-
-      #countdown {
-        font-size: 1.4em;
-      }
-
-      .container {
-        padding: 12px;
-        margin: 12px;
-      }
+      margin-top: 6px;
     }
   </style>
 </head>
