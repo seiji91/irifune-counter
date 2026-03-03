@@ -9,55 +9,53 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
       margin: 0;
       padding: 0;
       background-color: black;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
     }
 
     .container {
       width: 320px;
+      height: 160px;
       margin: 0 auto;
       background-color: black;
       border: 4px solid yellow;
       border-radius: 12px;
-      padding: 12px;
+      padding: 12px 8px;
       font-family: sans-serif;
       color: white;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .header {
       font-size: 14px;
-      margin-bottom: 8px;
     }
 
     #countdown {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       font-size: 18px;
       font-weight: bold;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: clip;
-      line-height: 1;
-    }
-
-    .number {
       color: yellow;
-      padding: 0 2px;
+      line-height: 1;
     }
 
     .label {
       color: white;
-      padding-right: 4px;
+      margin-right: 6px;
     }
 
     footer {
       font-size: 10px;
       color: #ccc;
-      margin-top: 6px;
     }
   </style>
 </head>
@@ -68,10 +66,10 @@
     </div>
 
     <div id="countdown">
-      <span class="number" id="days">--</span><span class="label">日</span>
-      <span class="number" id="hours">--</span><span class="label">時</span>
-      <span class="number" id="minutes">--</span><span class="label">分</span>
-      <span class="number" id="seconds">--</span><span class="label">秒</span>
+      <span id="days">--</span><span class="label">日</span>
+      <span id="hours">--</span><span class="label">時</span>
+      <span id="minutes">--</span><span class="label">分</span>
+      <span id="seconds">--</span><span class="label">秒</span>
     </div>
 
     <footer>© IRIFUNE COUNTER</footer>
