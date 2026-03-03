@@ -63,11 +63,12 @@
       margin-top: 4px;
     }
 
-    /* 📱 スマホ用のメディアクエリ */
+    /* 📱 スマホ用のメディアクエリ（上切れ対策付き） */
     @media (max-width: 480px) {
       .container {
         transform: scale(0.75);
         transform-origin: top center;
+        margin-top: 20px; /* ← 上切れ対策で少し下にずらす */
       }
     }
   </style>
@@ -88,35 +89,4 @@
       <span class="number" id="seconds">--</span><span class="label">秒</span>
     </div>
 
-    <footer>© IRIFUNE COUNTER</footer>
-  </div>
-
-  <script>
-    const targetDate = new Date(2026, 2, 28, 9, 0, 0); // 3月28日 午前9時
-
-    function updateCountdown() {
-      const now = new Date();
-      const diff = targetDate - now;
-
-      if (diff <= 0) {
-        document.getElementById("countdown").innerHTML = "イベント開始！";
-        clearInterval(timer);
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      document.getElementById("days").textContent = String(days).padStart(2, '0');
-      document.getElementById("hours").textContent = String(hours).padStart(2, '0');
-      document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
-      document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
-    }
-
-    const timer = setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
-</body>
-</html>
+    <footer>© IR
