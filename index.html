@@ -16,6 +16,7 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
+      line-height: 1;
     }
 
     .container {
@@ -32,6 +33,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      overflow: hidden;
     }
 
     .header {
@@ -45,7 +47,6 @@
       overflow: hidden;
       text-overflow: clip;
       color: yellow;
-      line-height: 1;
     }
 
     .label {
@@ -97,12 +98,4 @@
         document.getElementById("days").textContent = String(days).padStart(2, '0');
         document.getElementById("hours").textContent = String(hours).padStart(2, '0');
         document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
-        document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
-      }
-
-      const timer = setInterval(updateCountdown, 1000);
-      updateCountdown();
-    };
-  </script>
-</body>
-</html>
+        document.getElementById("
