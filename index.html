@@ -4,10 +4,14 @@
   <meta charset="UTF-8">
   <title>入船朝市カウントダウン</title>
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
       background: transparent;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .container {
@@ -15,11 +19,11 @@
       border: 6px solid yellow;
       border-radius: 12px;
       width: fit-content;
-      margin: 50px auto;
       padding: 30px;
       color: white;
       font-family: sans-serif;
       text-align: center;
+      box-sizing: border-box;
     }
 
     .header-row {
@@ -60,7 +64,6 @@
 </head>
 <body>
   <div class="container">
-    <!-- 上部：画像とテキストを横並びに -->
     <div class="header-row">
       <img src="mark.png" alt="入船朝市タイトル画像" class="title-image">
       <div class="subheading">
