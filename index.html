@@ -25,6 +25,7 @@
       font-family: sans-serif;
       text-align: center;
       box-sizing: border-box;
+      max-width: 100%;
     }
 
     .header-row {
@@ -33,6 +34,7 @@
       justify-content: center;
       gap: 10px;
       margin-bottom: 10px;
+      flex-wrap: wrap;
     }
 
     .title-image {
@@ -46,6 +48,9 @@
     #countdown {
       font-size: 2em;
       margin-bottom: 10px;
+      white-space: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .number {
@@ -64,7 +69,7 @@
       margin-top: 4px;
     }
 
-    /* 📱 スマホ用のメディアクエリ（中央寄せ・縮小・余白調整） */
+    /* 📱 スマホ用のメディアクエリ（縮小＋改行防止） */
     @media (max-width: 480px) {
       html, body {
         align-items: flex-start;
@@ -75,6 +80,10 @@
         transform: scale(0.7);
         transform-origin: top center;
         margin: 0 auto;
+      }
+
+      #countdown {
+        font-size: 1.6em;
       }
     }
   </style>
@@ -121,7 +130,6 @@
       document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
     }
 
-    // ✅ ページ読み込み後に確実に実行
     window.addEventListener("load", function () {
       updateCountdown();
       setInterval(updateCountdown, 1000);
