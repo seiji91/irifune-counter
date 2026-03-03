@@ -10,9 +10,8 @@
       padding: 0;
       background: transparent;
       font-family: sans-serif;
-      color: white;
       background-color: black;
-      text-align: center;
+      color: white;
       display: flex;
       justify-content: center;
     }
@@ -46,11 +45,13 @@
     }
 
     #countdown {
-      font-size: 2em;
-      margin-bottom: 10px;
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      white-space: nowrap;
+      font-size: 2em;
+      margin-bottom: 10px;
     }
 
     .number {
@@ -79,7 +80,7 @@
       }
 
       #countdown {
-        font-size: 1.5em;
+        font-size: 1.4em;
       }
 
       .container {
@@ -109,32 +110,33 @@
   </div>
 
   <script>
-    function updateCountdown() {
+    window.onload = function () {
       const targetDate = new Date(2026, 2, 28, 9, 0, 0); // 3月28日 午前9時
-      const now = new Date();
-      const diff = targetDate - now;
 
-      if (diff <= 0) {
-        document.getElementById("countdown").innerHTML = "イベント開始！";
-        clearInterval(timer);
-        return;
+      function updateCountdown() {
+        const now = new Date();
+        const diff = targetDate - now;
+
+        if (diff <= 0) {
+          document.getElementById("countdown").innerHTML = "イベント開始！";
+          clearInterval(timer);
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        document.getElementById("days").textContent = String(days).padStart(2, '0');
+        document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+        document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+        document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
       }
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      document.getElementById("days").textContent = String(days).padStart(2, '0');
-      document.getElementById("hours").textContent = String(hours).padStart(2, '0');
-      document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
-      document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
-    }
-
-    window.addEventListener("load", function () {
+      const timer = setInterval(updateCountdown, 1000);
       updateCountdown();
-      setInterval(updateCountdown, 1000);
-    });
+    };
   </script>
 </body>
 </html>
