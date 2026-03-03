@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>入船朝市カウントダウン</title>
+  <style>
+    body {
+      background-color: black;
+      color: yellow;
+      font-family: 'Meiryo UI', 'Meiryo', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #111;
+      border: 5px solid #FFD700;
+      border-radius: 15px;
+      padding: 20px 30px;
+      box-shadow: 0 0 15px #FFD700;
+      text-align: center;
+      display: inline-block;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .title-image {
+      width: 160px;
+      height: auto;
+      opacity: 0.95;
+    }
+
+    .subheading {
+      font-size: 1.6em;
+      white-space: nowrap;
+    }
+
+    .subheading strong {
+      color: #FFD700;
+      font-weight: bold;
+    }
+
+    .subheading span {
+      color: white;
+    }
+
+    #countdown {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 0 0 10px 0;
+    }
+
+    .number {
+      font-size: 3em;
+      color: #FFD700;
+      font-weight: bold;
+      font-family: 'Meiryo UI', 'Meiryo', sans-serif;
+    }
+
+    .label {
+      font-size: 0.9em;
+      color: #ccc;
+      margin-left: 2px;
+      margin-right: 10px;
+    }
+
+    footer {
+      font-size: 1em;
+      color: #666;
+      margin-top: 6px;
+    }
+
+    @media (max-width: 600px) {
+      .number {
+        font-size: 2.2em;
+      }
+      .title-image {
+        width: 120px;
+      }
+      .subheading {
+        font-size: 1.2em;
+      }
+      footer {
+        font-size: 0.9em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 上部：画像とテキストを横並びに -->
+    <div class="header-row">
+      <img src="mark.png" alt="入船朝市タイトル画像" class="title-image">
+      <div class="subheading">
+        <strong>3月28日</strong><span>まで あと…</span>
+      </div>
+    </div>
+
+    <div id="countdown">
+      <span class="number" id="days">--</span><span class="label">日</span>
+      <span class="number" id="hours">--</span><span class="label">時</span>
+      <span class="number" id="minutes">--</span><span class="label">分</span>
+      <span class="number" id="seconds">--</span><span class="label">秒</span>
+    </div>
+
+    <footer>© IRIFUNE COUNTER</footer>
+  </div>
+
+  <script>
+    const targetDate = new Date(2026, 2, 28, 9, 0, 0); // 3月28日 午前9時
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "イベント開始！";
+        clearInterval(timer);
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("days").textContent = String(days).padStart(2, '0');
+      document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+    }
+
+    const timer = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
