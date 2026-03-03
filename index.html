@@ -18,9 +18,9 @@
 
     .container {
       background-color: black;
-      border: 6px solid yellow;
+      border: 4px solid yellow;
       border-radius: 12px;
-      padding: 10px 30px;
+      padding: 10px 20px;
       color: white;
       font-family: sans-serif;
       text-align: center;
@@ -32,58 +32,61 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      margin-bottom: 10px;
       flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
     }
 
     .title-image {
-      height: 60px;
+      height: 50px;
     }
 
     .subheading {
-      font-size: 1.2em;
+      font-size: 1.1em;
     }
 
     #countdown {
-      font-size: 2em;
-      margin-bottom: 10px;
-      white-space: nowrap;
+      font-size: 1.8em;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+      white-space: nowrap;
     }
 
     .number {
       font-weight: bold;
-      padding: 0 4px;
+      padding: 0 3px;
       color: yellow;
     }
 
     .label {
-      margin-right: 8px;
+      margin-right: 6px;
     }
 
     footer {
-      font-size: 0.8em;
+      font-size: 0.75em;
       color: #ccc;
       margin-top: 4px;
     }
 
-    /* 📱 スマホ用のメディアクエリ（縮小＋改行防止） */
+    /* 📱 スマホ用の調整 */
     @media (max-width: 480px) {
-      html, body {
-        align-items: flex-start;
-        padding-top: 20px;
+      .title-image {
+        height: 40px;
       }
 
-      .container {
-        transform: scale(0.7);
-        transform-origin: top center;
-        margin: 0 auto;
+      .subheading {
+        font-size: 1em;
       }
 
       #countdown {
-        font-size: 1.6em;
+        font-size: 1.4em;
+      }
+
+      .container {
+        padding: 8px 16px;
       }
     }
   </style>
