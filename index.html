@@ -2,134 +2,71 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>入船朝市カウントダウン</title>
-
 <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  background: transparent !important;
-  font-family: sans-serif;
-}
-
-/* 全体の中央寄せ */
-.wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 0; /* ← 少し減らす */
-}
-
-/* カウンターボックス */
-.timer-box {
-  background: #000;
-  border: 4px solid #ffd700;
-  border-radius: 20px;
-  box-shadow: 0 0 25px #ffd700;
-  padding: 25px 30px; /* ← 少し減らす */
-  text-align: center;
-  color: #fff;
-  max-width: 900px;
-  width: 95%;
-}
-
-.title {
-  font-size: 28px;
-  margin-bottom: 20px;
-}
-
-.title span {
-  color: #ffd700;
-  font-weight: bold;
-}
-
-.time {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: nowrap;
-}
-
-.time div {
-  font-size: 48px;
-  color: #ffd700;
-  font-weight: bold;
-}
-
-.label {
-  font-size: 16px;
-  color: #fff;
-  margin-left: 4px;
-}
-
-/* スマホ最適化 */
-@media (max-width: 600px) {
-  .wrapper {
-    padding: 10px 0; /* ← スマホではさらに余白を減らす */
+  body {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    text-align: center;
+    background: #f0f4ff;
+    padding: 40px 0;
   }
 
-  .timer-box {
-    padding: 15px 20px; /* ← スマホではコンパクトに */
+  .title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
   }
 
-  .time div {
-    font-size: 32px;
+  .counter-box {
+    display: inline-block;
+    padding: 20px 30px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #ffffff;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    letter-spacing: 2px;
   }
-}
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
-  <div class="timer-box">
-    <div class="title">
-      入船朝市 <span>3月28日</span>まであと…
-    </div>
-
-    <div class="time">
-      <div><span id="days"></span><span class="label">日</span></div>
-      <div><span id="hours"></span><span class="label">時</span></div>
-      <div><span id="minutes"></span><span class="label">分</span></div>
-      <div><span id="seconds"></span><span class="label">秒</span></div>
-    </div>
-
-    <div style="margin-top:20px; font-size:14px; opacity:0.6;">
-      🄬 IRIFUNE COUNTER
-    </div>
-  </div>
-</div>
+<div class="title">2026年4月の入船朝市 まであと</div>
+<div id="countdown" class="counter-box"></div>
 
 <script>
-// 日本時間 2026/3/28 09:00 に固定
-const targetDate = new Date("2026-03-28T09:00:00+09:00").getTime();
+// 目標日時（日本時間）
+var targetDate = new Date(2026, 3, 25, 9, 0, 0);
 
-function updateTimer() {
-  const now = new Date().getTime();
-  const diff = targetDate - now;
+function updateCountdown() {
+  var now = new Date();
+  var diff = targetDate - now;
 
   if (diff <= 0) {
-    document.getElementById("days").innerText = 0;
-    document.getElementById("hours").innerText = 0;
-    document.getElementById("minutes").innerText = 0;
-    document.getElementById("seconds").innerText = 0;
+    document.getElementById("countdown").textContent = "開催中！";
+    clearInterval(timer);
     return;
   }
 
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
+  var seconds = Math.floor(diff / 1000);
+  var days    = Math.floor(seconds / (60 * 60 * 24));
+  seconds    -= days * 60 * 60 * 24;
+  var hours   = Math.floor(seconds / (60 * 60));
+  seconds    -= hours * 60 * 60;
+  var minutes = Math.floor(seconds / 60);
+  seconds    -= minutes * 60;
 
-  document.getElementById("days").innerText = days;
-  document.getElementById("hours").innerText = hours;
-  document.getElementById("minutes").innerText = minutes;
-  document.getElementById("seconds").innerText = seconds;
+  document.getElementById("countdown").textContent =
+    days + "日 " +
+    hours + "時間 " +
+    minutes + "分 " +
+    seconds + "秒";
 }
 
-setInterval(updateTimer, 1000);
-updateTimer();
+var timer = setInterval(updateCountdown, 1000);
+updateCountdown();
 </script>
 
 </body>
